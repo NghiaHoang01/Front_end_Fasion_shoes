@@ -1,0 +1,16 @@
+import TitleItem from "components/TitleItemForm"
+import { ErrorMessage, FastField } from "formik"
+import TextError from "../TextError"
+import './Style.css'
+
+const InputField = (props) => {
+    const { title, name, display, ...rest } = props
+
+    return <div className={`input-field mb-3 ${display && 'hidden'}`}>
+        {title && <TitleItem title={title} />}
+        <FastField id={name} name={name} {...rest} />
+        <ErrorMessage name={name} component={TextError} />
+    </div>
+}
+
+export default InputField
