@@ -145,3 +145,7 @@
 :where(.css-dev-only-do-not-override-kajqop).ant-pagination .ant-pagination-jump-next .ant-pagination-item-container .ant-pagination-item-link-icon {
     color: var(--red);
 }
+
+:where(.css-dev-only-do-not-override-a0m1zb) a:hover {
+    color: var(--red);
+}

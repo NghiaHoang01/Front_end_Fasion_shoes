@@ -8,13 +8,13 @@ const RadioButtonField = (props) => {
 
     return <div className='radion-button-field'>
         {title && <TitleItem title={title} />}
-        <div className='flex justify-between items-center mb-2'>
+        <div className='flex justify-center items-center mb-2'>
             <Field name={name} id={name} {...rest}>
                 {
                     ({ field }) => {
                         return options?.map((item, index) => {
                             return (
-                                <div key={index}>
+                                <div key={index} className="mx-4">
                                     <label htmlFor={item.id}
                                         className={`relative text-grey text-[15.5px] px-2 py-[6px] rounded-[4px] border border-light-gray cursor-pointer ${index === checked && 'border-red-custom text-red-custom'} duration-150 ease-in-out`}
                                         onClick={() => { setChecked(index) }}>

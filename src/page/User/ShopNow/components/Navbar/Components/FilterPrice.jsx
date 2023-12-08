@@ -1,18 +1,36 @@
-import { filter } from "page/User/ShopNow/ShopNowSlice";
+import { filter, getHighestPriceOfProductAsync, shopNowSelector } from "page/User/ShopNow/ShopNowSlice";
+import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import FilterTilte from "./FilterTitle"
 
-const FilterPrice = (props) => {
+const FilterPrice = () => {
+
+    const shopNow = useSelector(shopNowSelector)
 
     const dispatch = useDispatch()
 
-    const shopNow = useSelector(state => state.shopNow)
+    // list range price
+    const LIST_RANGE_PICE = [
+        {
+            minPrice: 0,
+            maxPrice: 1000000,
+        }, {
+            minPrice: 1000000,
+            maxPrice: 2000000,
+        }, {
+            minPrice: 2000001,
+            maxPrice: 4999999,
+        }, {
+            minPrice: 5000000,
+            maxPrice: shopNow.highestPrice
+        }
+    ]
 
     const [dropDown, setDropDown] = useState(true);
 
-    const handleChangeRangePrice = (item) => {
-        dispatch(filter({
+    const handleChangeRangePrice = async (item) => {
+        await dispatch(filter({
             minPrice: item.minPrice,
             maxPrice: item.maxPrice
         }))
@@ -43,6 +61,15 @@ const FilterPrice = (props) => {
         return item.maxPrice === shopNow.filter.maxPrice && item.minPrice === shopNow.filter.minPrice
     }
 
+    const getHighestPrice = async () => {
+        await dispatch(getHighestPriceOfProductAsync())
+    }
+
+    useEffect(() => {
+        getHighestPrice()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
     return <div className="filter-price pb-3 border-b border-light-gray mb-5">
         <div className="flex justify-between items-center cursor-pointer" onClick={() => setDropDown(!dropDown)}>
             <FilterTilte title='Shop By Price' />
@@ -50,7 +77,7 @@ const FilterPrice = (props) => {
         </div>
         <ul className={`ml-1 duration-150 ease-linear ${dropDown && 'drop-down'}`}>
             {
-                props.listRangePrice?.map((item, index) => <li
+                LIST_RANGE_PICE?.map((item, index) => <li
                     key={index}
                     className={`tracking-[0.75px] mb-1 duration-200 ease-linear cursor-pointer font-normal flex items-center hover:text-red-custom  ${checkChoose(item) && 'text-red-custom font-semibold'}`}
                     onClick={() => handleChangeRangePrice(item)}>

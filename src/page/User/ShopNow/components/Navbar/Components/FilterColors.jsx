@@ -1,4 +1,4 @@
-import { MULTIPLE, WHITE } from "constants/variable";
+import { LIST_COLORS, MULTIPLE, WHITE } from "constants/variable";
 import { filter } from "page/User/ShopNow/ShopNowSlice";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,8 +12,8 @@ const FilterColor = (props) => {
 
     const [dropDown, setDropDown] = useState(true);
 
-    const handleChangeColor = (item) => {
-        dispatch(filter({ color: item.value }))
+    const handleChangeColor = async (item) => {
+        await dispatch(filter({ color: item.value }))
     }
 
     return <div className="filter-colors pb-3 border-b border-light-gray  mb-5">
@@ -23,7 +23,7 @@ const FilterColor = (props) => {
         </div>
         <div className={`color--item flex justify-between flex-wrap mt-2 ${dropDown && 'drop-down'}`}>
             {
-                props.listColors?.map((item, index) =>
+                LIST_COLORS?.map((item, index) =>
                     <div
                         key={index}
                         className='w-[20%] mx-2 cursor-pointer flex flex-col items-center text-[11.5px] text-eclipse font-semibold mb-[20px]'

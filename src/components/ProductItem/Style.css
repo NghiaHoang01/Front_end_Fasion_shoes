@@ -56,11 +56,12 @@
 
 .form--size__item .ant-radio-group {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .form--size__item .ant-radio-group label {
     border-radius: 8px;
+    margin: 0px 15px;
 }
 
 .form--size__item .ant-radio-group label::before {

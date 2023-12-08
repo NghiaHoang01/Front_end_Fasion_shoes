@@ -18,3 +18,13 @@
     border: 1px solid var(--dark-charcoal);
     box-shadow: 0 0 0 2px rgba(172, 172, 172, 0.1);
 }
+
+.disable>input {
+    background-color: var(--light-gray);
+}
+
+.disable>input:hover {
+    cursor: no-drop;
+    border: 1px solid var(--light-gray);
+    box-shadow: none;
+}

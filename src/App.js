@@ -13,6 +13,12 @@ function App() {
             colorPrimary: '#c91f28',
             colorText: 'eclipse',
             fontFamily: '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif',
+          }, components: {
+            Pagination: {
+              colorPrimaryHover: '#c91f28',
+              colorPrimary: '#c91f28',
+              colorPrimaryBorder: '#c91f28',
+            }
           },
         }}
       >

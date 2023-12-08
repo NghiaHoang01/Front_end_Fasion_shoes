@@ -1,32 +1,57 @@
 import ProductItem from "components/ProductItem";
 import SectionHeading from "components/SectionHeading";
-import { useNavigate } from "react-router-dom"
+import { APP_URLS } from "constants/variable";
+import { resetFilter } from "page/User/ShopNow/ShopNowSlice";
+import { useEffect } from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getListProsductsFeaturedAsync } from "../HomeSilce";
 
 const FeaturedProducts = (props) => {
 
     const navigate = useNavigate();
 
+    const dispatch = useDispatch()
+
+    const [productsFeatured, setProductsFeatures] = useState({ data: [], visible: 0 })
+
+    const getListProductsFeatured = async () => {
+        const response = await dispatch(getListProsductsFeaturedAsync())
+        setProductsFeatures({
+            data: response.payload.results.listProducts,
+            visible: 4
+        })
+    }
+
+    const handleLoadmore = () => {
+        setProductsFeatures({ ...productsFeatured, visible: productsFeatured.visible + 4 })
+    }
+
+    const handleNavigateShopnow = async () => {
+        await dispatch(resetFilter())
+        navigate(APP_URLS.URL_SHOP_NOW)
+    }
+
+    useEffect(() => {
+        getListProductsFeatured()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
     return <div className="featured-products pb-12 pt-7">
         <SectionHeading title='Featured products' />
         <div className="flex justify-between overflow-hidden flex-wrap">
             {
-                props.listFeaturedProducts.map((item, index) => <ProductItem className='card-product__medium' key={index} brand={item.brand}
-                    discountedPercent={item.discountedPercent} url={item.url} name={item.name} title={item.title}
-                    price={item.price} discountedPrice={item.discountedPrice} id={item.id} description={item.description}
-                    sizes={
-                        item.sizes?.map((size) => {
-                            return {
-                                id: item.id + '.' + size.name,
-                                value: size.name,
-                                label: size.name
-                            }
-                        })
-                    }
-                />)
+                productsFeatured.data.slice(0, productsFeatured.visible).map((item, index) => <ProductItem className='card-product__medium' key={index} product={item} />)
             }
         </div>
         <div className="text-center mt-5">
-            <button onClick={() => { navigate('/shop-now') }} className="button-custom py-[10px] px-[70px] text-[18px]">see more</button>
+            {
+                productsFeatured.visible < productsFeatured.data.length ?
+                    <button onClick={handleLoadmore} className="button-custom py-[8px] px-[70px] text-[18px]">see more</button>
+                    :
+                    <button onClick={handleNavigateShopnow} className="button-custom py-[8px] px-[70px] text-[18px]">shop now</button>
+            }
         </div>
     </div>
 }

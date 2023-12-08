@@ -4,9 +4,9 @@ import TextError from "../TextError"
 import './Style.css'
 
 const InputField = (props) => {
-    const { title, name, display, ...rest } = props
+    const { title, name, display, disable, ...rest } = props
 
-    return <div className={`input-field mb-3 ${display && 'hidden'}`}>
+    return <div className={`input-field mb-3 ${display && 'hidden'} ${disable && 'disable'}`}>
         {title && <TitleItem title={title} />}
         <FastField id={name} name={name} {...rest} />
         <ErrorMessage name={name} component={TextError} />

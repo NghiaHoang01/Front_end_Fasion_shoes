@@ -10,8 +10,8 @@ const FilterSale = (props) => {
 
     const [dropDown, setDropDown] = useState(true);
 
-    const handleChangeSale = (e) => {
-        dispatch(filter({ sale: e.target.checked ? true : false }))
+    const handleChangeSale = async (e) => {
+        await dispatch(filter({ sale: e.target.checked ? true : false }))
     }
     return <div className="filter-sale pb-3 border-b border-light-gray mb-5">
         <div className="flex justify-between items-center cursor-pointer" onClick={() => setDropDown(!dropDown)}>

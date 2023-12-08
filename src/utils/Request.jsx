@@ -1,7 +1,9 @@
 import axios from "axios";
 import { BASE_URL } from "constants/variable";
+import { refreshTokenService } from "service/LoginService";
 
 const request = axios.create({
+    withCredentials: true,
     timeout: 60000,
     headers: {
         "Content-Type": "application/json-patch+json",
@@ -9,15 +11,31 @@ const request = axios.create({
     baseURL: BASE_URL
 })
 
-const handleError = (error) => {
-    const { response = {} } = error;
+const handleError = async (error) => {
+    const { response = {}, config } = error;
     const { data, status, statusText } = response;
+    const originalRequest = config
+    if (data.message === 'Access Denied'
+        && data.status === 403
+        && data.error === 'Forbidden'
+        && !originalRequest._retry) {
+        originalRequest._retry = true;
+        const res = await refreshTokenService()
+        console.log(res)
+        if (res.data.status === 500 || !res.data.success) {
+            console.log(res.data.message)
+            localStorage.removeItem("user")
+        }
+        return request(originalRequest);
+    }
     return { data, status, statusText };
 };
 
 request.interceptors.request.use((config) => {
-    const token = sessionStorage.getItem("token");
-    config.headers.Authorization = `Bearer ${token}`;
+    if (config.isFormData) {
+        delete config.headers['Content-Type']
+        config.headers['Content-Type'] = 'multipart/form-data';
+    }
     return config;
 });
 

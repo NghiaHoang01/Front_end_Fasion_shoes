@@ -3,11 +3,14 @@ import { Formik, Form } from 'formik';
 import Button from 'components/FormControl/Button';
 import InputField from 'components/FormControl/InputField/InputField';
 import InputPasswordField from 'components/FormControl/InputField/InputPasswordField';
-import { notification, Spin } from 'antd'
+import { Spin } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import * as Yup from 'yup'
-import { loginAsync, loginSelector } from '../LoginSlice';
+import { loginAsync, loginSelector, notificationSuccess } from '../LoginSlice';
 import { APP_URLS } from 'constants/variable';
+import { useEffect } from 'react';
+import { TabTitle } from 'utils/TabTitle';
+import { countCartItemAsync } from 'page/User/CartDetail/CartSlice';
 
 const LoginForm = (props) => {
 
@@ -17,34 +20,30 @@ const LoginForm = (props) => {
 
     const login = useSelector(loginSelector)
 
-    // notification
-    const [api, contextHolder] = notification.useNotification();
-
-    const openNotification = (value) => {
-        api.error({
-            message: 'Notification',
-            description: value,
-            duration: 3,
-        });
-    };
+    const countCartItem = async () => {
+        await dispatch(countCartItemAsync())
+    }
 
     // handle login
     const handleLogin = async (values, { resetForm }) => {
         const response = await dispatch(loginAsync(values));
+
         if (response.payload.success) {
             localStorage.setItem("user", JSON.stringify(response.payload.results))
             resetForm()
+            countCartItem()
             navigate(APP_URLS.URL_HOME)
-        } else {
+        }
+        else {
             switch (response.payload.status) {
                 case 500:
-                    openNotification(response.payload.message)
+                    props.openNotification(response.payload.message, 'error')
                     break
                 case 403:
-                    openNotification('User not found !!!')
+                    props.openNotification('User not found !!!', 'error')
                     break
                 default:
-                    openNotification('System error, sorry for the inconvenience !!!')
+                    props.openNotification(response.payload.message, 'error')
             }
         }
     }
@@ -55,6 +54,20 @@ const LoginForm = (props) => {
             .email('Invalid email format !!!'),
         password: Yup.string().required('Please input your password !!!')
     })
+
+    useEffect(() => {
+        TabTitle('Login')
+        window.scrollTo(0, 0)
+
+        if (login.notification?.success && login.notification?.title !== '') {
+            props.openNotification(`${login.notification?.title} success, Please log in again !!!`, 'success')
+            dispatch(notificationSuccess({
+                success: false,
+                title: ''
+            }))
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [login.notification])
 
     return <Spin tip="Loading..." spinning={login.isLoading} size='large'>
         <p className='mb-8 text-center text-[55px] text-eclipse font-semibold tracking-[4px]'>Login</p>
@@ -86,8 +99,6 @@ const LoginForm = (props) => {
                 }
             }
         </Formik>
-
-        {contextHolder}
     </Spin>
 }
 

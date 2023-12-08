@@ -166,3 +166,7 @@
     color: var(--red);
     border-color: var(--red);
 }
+
+.log-out__confirm .ant-modal-title {
+    font-size: 18px;
+}

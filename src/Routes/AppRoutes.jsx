@@ -20,8 +20,20 @@ import Error404 from "page/Error404";
 import Orders from "page/User/Orders";
 import Account from "page/User/Account";
 import AnonymousRoutes from "./Anonymous";
+import ChangePassword from "page/Login/components/ChangePassword";
+import { notification } from "antd";
 
 const AppRoutes = (props) => {
+    // notification
+    const [api, contextHolder] = notification.useNotification();
+
+    const openNotification = (value, type) => {
+        api[type]({
+            message: 'Notification',
+            description: value,
+            duration: 3,
+        });
+    };
     return <>
         <Routes>
             <Route path="/" element={<Navigate to={APP_URLS.URL_HOME}></Navigate>}></Route>
@@ -30,26 +42,27 @@ const AppRoutes = (props) => {
             <Route path={APP_URLS.URL_ABOUT} element={<About />}></Route>
             <Route path={APP_URLS.URL_CONTACT} element={<Contact />}></Route>
             <Route path={APP_URLS.URL_SYSTEM_STORE} element={<SystemStore />}></Route>
-            <Route path={APP_URLS.URL_PRODUCT} element={<ProductDetail />}></Route>
+            <Route path={`${APP_URLS.URL_PRODUCT}/:id`} element={<ProductDetail openNotification={openNotification} />}></Route>
 
             <Route element={<AnonymousRoutes />}>
-                <Route path={APP_URLS.URL_LOGIN} element={<Login form={<LoginForm />} />}></Route>
-                <Route path={APP_URLS.URL_SIGNUP} element={<Login form={<SignupForm />} />}></Route>
-                <Route path={APP_URLS.URL_FORGOT_PASSWORD} element={<Login form={<EmailForm />} />}></Route>
-                <Route path={APP_URLS.URL_VALIFATE_OTP} element={<Login form={<OtpForm />} />}></Route>
-                <Route path={APP_URLS.URL_RESET_PASSWORD} element={<Login form={<ResetPasswordForm />} />}></Route>
+                <Route path={APP_URLS.URL_LOGIN} element={<Login form={<LoginForm openNotification={openNotification} />} />}></Route>
+                <Route path={APP_URLS.URL_SIGNUP} element={<Login form={<SignupForm openNotification={openNotification} />} />}></Route>
+                <Route path={APP_URLS.URL_FORGOT_PASSWORD} element={<Login form={<EmailForm openNotification={openNotification} />} />}></Route>
+                <Route path={APP_URLS.URL_VALIFATE_OTP} element={<Login form={<OtpForm openNotification={openNotification} />} />}></Route>
+                <Route path={APP_URLS.URL_RESET_PASSWORD} element={<Login form={<ResetPasswordForm openNotification={openNotification} />} />}></Route>
             </Route>
 
             <Route element={<PrivateRoutes />}>
-                <Route path={APP_URLS.URL_CART} element={<CartDetail />}></Route>
-                <Route path={APP_URLS.URL_PRODUCT} element={<ProductDetail />}></Route>
+                <Route path={APP_URLS.URL_CART} element={<CartDetail openNotification={openNotification} />}></Route>
                 <Route path={APP_URLS.URL_CHECKOUT} element={<CheckOut />}></Route>
                 <Route path={APP_URLS.URL_ORDERS} element={<Orders />}></Route>
-                <Route path={APP_URLS.URL_ACCOUNT} element={<Account />}></Route>
+                <Route path={APP_URLS.URL_ACCOUNT} element={<Account openNotification={openNotification} />}></Route>
+                <Route path={APP_URLS.URL_CHANGE_PASSWORD} element={<Login form={<ChangePassword openNotification={openNotification} />} />}></Route>
             </Route>
 
             <Route path="*" element={<Error404 />}></Route>
         </Routes>
+        {contextHolder}
     </>
 }
 

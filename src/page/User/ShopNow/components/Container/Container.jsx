@@ -1,34 +1,28 @@
-import { Pagination } from "antd"
+import { Empty, Pagination } from "antd"
 import ProductItem from "components/ProductItem"
+import { useSelector } from "react-redux"
+import { shopNowSelector } from "../../ShopNowSlice"
 
 const Container = (props) => {
-    const { showNavbar, listProducts, page, setPage } = props
+    const { showNavbar, paging, onChangePage, } = props
 
-    const onChangePage = (page) => {
-        setPage({
-            pageIndex: page,
-            pageSize: 9
-        });
-    };
+    const shopNow = useSelector(shopNowSelector)
 
     return <div className={`${showNavbar ? 'w-[80%]' : 'w-full'} flex flex-wrap justify-between duration-150`}>
+
         {
-            listProducts?.map((item, index) => <ProductItem key={index} className={`${showNavbar ? 'card-product__max' : 'card-product__max'}`}
-                discountedPercent={item.discountedPercent} discountedPrice={item.discountedPrice} name={item.name} title={item.title}
-                brand={item.brand} price={item.price} url={item.url} id={item.id} description={item.description}
-                sizes={
-                    item.sizes?.map((size) => {
-                        return {
-                            id: item.id + '.' + size.name,
-                            value: size.name,
-                            label: size.name
-                        }
-                    })
-                } />)
+            shopNow.listProducts.map((item, index) => <ProductItem key={index} className={`${showNavbar ? 'card-product__max' : 'card-product__max'}`} product={item} />)
         }
-        <div className="pagination text-center mt-6 w-full">
-            <Pagination current={page.pageIndex} onChange={onChangePage} pageSize={page.pageSize} total={90} showSizeChanger={false} />
-        </div>
+        {
+            shopNow.listProducts.length > 0 ?
+                <div className="pagination text-center mt-6 w-full">
+                    <Pagination current={paging.pageIndex} onChange={onChangePage} pageSize={paging.pageSize} total={shopNow.totalProduct} showSizeChanger={false} />
+                </div>
+                :
+                <div className="text-center w-full h-full mt-[100px]">
+                    <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+                </div>
+        }
     </div>
 }
 

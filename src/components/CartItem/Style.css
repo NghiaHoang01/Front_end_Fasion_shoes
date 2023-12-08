@@ -11,3 +11,7 @@
 .cart--item .ant-select-single .ant-select-selector {
     color: var(--grey);
 }
+
+.ant-popconfirm-buttons .ant-btn-primary {
+    background-color: var(--red) !important;
+}

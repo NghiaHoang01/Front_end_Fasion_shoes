@@ -11,30 +11,34 @@ const Banner = () => {
         {
             'url': firstSlide,
             'title': 'Ultra Boots Shoes',
-            'brand': 'adidas'
+            'brand': 'adidas',
+            'brandId': 2
         }, {
             'url': secondSlide,
             'title': 'Nike ClassNameic Cortez',
-            'brand': 'nike'
+            'brand': 'nike',
+            'brandId': 1
         }, {
             'url': thirdSlide,
             'title': 'Puma Basic Sneakers',
-            'brand': 'puma'
+            'brand': 'puma',
+            'brandId': 3
         }, {
             'url': fourthSlide,
             'title': 'Converse All Star',
-            'brand': 'converse'
+            'brand': 'converse',
+            'brandId': 4
         }
     ]
 
-    return <div className="flex h-screen pb-2 w-full overflow-hidden banner">
-        <div className="flex flex-wrap content-between">
+    return <div className="flex justify-between h-[calc(100vh-80px)] pb-2 w-full overflow-hidden banner">
+        <div className="flex flex-wrap content-between w-[70%]">
             {
-                lstBannerLeft.map((item, index) => <BannerLeft key={index} url={item.url} title={item.title} brand={item.brand} />)
+                lstBannerLeft.map((item, index) => <BannerLeft brandId={item.brandId} key={index} url={item.url} title={item.title} brand={item.brand} />)
             }
         </div>
-        <div className="overflow-hidden h-full">
-            <BannerRight url={fifthSlide} title='The Rangged Priest' brand='Orther' />
+        <div className="overflow-hidden h-full w-[30%]">
+            <BannerRight url={fifthSlide} title='The Rangged Priest' brand='Orther' brandId={undefined} />
         </div>
     </div>
 

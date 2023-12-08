@@ -3,6 +3,11 @@ export const BASE_URL = 'http://localhost:8080'
 export const ROLE_USER = 'USER';
 export const ROLE_ADMIN = 'ADMIN';
 
+// gender
+export const MALE = "MALE"
+export const FEMALE = "FEMALE"
+export const OTHER = "OTHER"
+
 //token cookie
 export const TOKEN_COOKIE = "token_cookie"
 
@@ -26,7 +31,8 @@ export const APP_URLS = {
     URL_PRODUCT: '/product',
     URL_CHECKOUT: '/checkout',
     URL_ORDERS: '/orders',
-    URL_ACCOUNT: '/account'
+    URL_ACCOUNT: '/account',
+    URL_CHANGE_PASSWORD: '/change-password'
 }
 
 //navbar
@@ -47,15 +53,15 @@ export const NAVBAR_MENU = [
 // list gender
 export const LIST_GENDER = [
     {
-        value: 'male',
+        value: 'MALE',
         label: 'Male',
     },
     {
-        value: 'female',
+        value: 'FEMALE',
         label: 'Female',
     },
     {
-        value: 'other',
+        value: 'ORTHER',
         label: 'Other',
     }
 ]
@@ -83,7 +89,7 @@ export const WHITE = 'WHITE'
 
 export const YELLOW = 'YELLOW'
 
-export const MULTIPLE = 'MULTIPLE'
+export const MULTIPLE = 'MULTI'
 
 
 
@@ -128,23 +134,6 @@ export const LIST_COLORS = [
     },
 ]
 
-// list range price
-export const LIST_RANGE_PICE = [
-    {
-        minPrice: null,
-        maxPrice: 1000000,
-    }, {
-        minPrice: 1000000,
-        maxPrice: 2000000,
-    }, {
-        minPrice: 2000001,
-        maxPrice: 4999999,
-    }, {
-        minPrice: 5000000,
-        maxPrice: null
-    }
-]
-
 // list sort by
 export const LIST_SORT_BY = [
     {
@@ -152,10 +141,10 @@ export const LIST_SORT_BY = [
         label: 'Newest'
     }, {
         value: 'price_low',
-        label: 'Price: Low-High'
+        label: 'Price: Low-Hight'
     }, {
-        value: 'price_high',
-        label: 'Price: Higth-Low'
+        value: 'price_hight',
+        label: 'Price: Hight-Low'
     },
 ]
 

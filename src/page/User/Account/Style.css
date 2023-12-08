@@ -29,5 +29,5 @@
 
 .select-image button:hover::before {
     transform-origin: center left;
-    transform: scaleY(1);
+    transform: scaleY(2);
 }
