@@ -66,6 +66,29 @@ export const LIST_GENDER = [
     }
 ]
 
+export const LIST_CHECKOUT = [
+    {
+        'name': 'Shipping',
+        'subName': 'Where to ship it?'
+    }, {
+        'name': 'Payment',
+        'subName': 'Of your order?'
+    }
+]
+
+export const PAYMENT_METHOD = {
+    COD: 'COD',
+    VNPAY: 'VNPAY',
+    MOMO: 'MOMO'
+}
+
+export const STATUS_ORDER = {
+    PENDING: 'PENDING',
+    CONFIRMED: 'CONFIRMED',
+    SHIPPED: 'SHIPPED',
+    DELIVERED: 'DELIVERED'
+}
+
 // name color
 export const BLACK = 'BLACK'
 
@@ -90,8 +113,6 @@ export const WHITE = 'WHITE'
 export const YELLOW = 'YELLOW'
 
 export const MULTIPLE = 'MULTI'
-
-
 
 // list colors
 export const LIST_COLORS = [

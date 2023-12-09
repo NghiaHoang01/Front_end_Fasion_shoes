@@ -55,7 +55,7 @@ const AppRoutes = (props) => {
             <Route element={<PrivateRoutes />}>
                 <Route path={APP_URLS.URL_CART} element={<CartDetail openNotification={openNotification} />}></Route>
                 <Route path={APP_URLS.URL_CHECKOUT} element={<CheckOut />}></Route>
-                <Route path={APP_URLS.URL_ORDERS} element={<Orders />}></Route>
+                <Route path={APP_URLS.URL_ORDERS} element={<Orders openNotification={openNotification} />}></Route>
                 <Route path={APP_URLS.URL_ACCOUNT} element={<Account openNotification={openNotification} />}></Route>
                 <Route path={APP_URLS.URL_CHANGE_PASSWORD} element={<Login form={<ChangePassword openNotification={openNotification} />} />}></Route>
             </Route>

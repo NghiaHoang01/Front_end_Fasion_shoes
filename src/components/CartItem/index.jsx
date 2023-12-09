@@ -61,7 +61,7 @@ const CartItem = (props) => {
     }, [])
 
     return <div className="cart--item w-full flex justify-between py-5 border-b border-light-gray ml-4 overflow-hidden">
-        <div onClick={handleNavigatePageDetail} className='w-[140px] h-[140px] overflow-hidden rounded-[8px] cursor-pointer'>
+        <div onClick={handleNavigatePageDetail} className='w-[140px] h-[140px] overflow-hidden rounded-[8px] cursor-pointer border border-gray98'>
             <img className='object-center object-cover w-full h-full' src={cart.mainImageBase64} alt="" />
         </div>
         <div className='w-[calc(100%-170px)]'>

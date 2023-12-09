@@ -8,7 +8,7 @@ const initialState = {
     listproductsAlsoLike: [],
     totalCartItem: 0,
     cartItem: {},
-    listCartItemsChoosed: []
+    listCartItemsCheckout: []
 }
 
 // get cart detail
@@ -58,7 +58,7 @@ const cart = createSlice({
     initialState,
     reducers: {
         saveListCartItemsChoosed: (state, action) => {
-            state.listCartItemsChoosed = (action.payload)
+            state.listCartItemsCheckout = (action.payload)
         }
     },
     extraReducers: builder => {

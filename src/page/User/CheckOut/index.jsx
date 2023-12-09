@@ -6,23 +6,9 @@ import { Steps } from 'antd';
 import { useEffect } from 'react';
 import { TabTitle } from 'utils/TabTitle';
 import StepCheckout from 'components/StepCheckout';
-import { useSelector } from 'react-redux'
+import { LIST_CHECKOUT } from 'constants/variable';
 
 const CheckOut = () => {
-
-    const cart = useSelector(state => state.cart)
-
-    const listStep = [
-        {
-            'name': 'Shipping',
-            'subName': 'Where to ship it?'
-        }, {
-            'name': 'Payment',
-            'subName': 'Of your order?'
-        }
-    ]
-
-
 
     const [step, setStep] = useState(0)
 
@@ -32,7 +18,7 @@ const CheckOut = () => {
 
     const forms = [
         <Shipping shipping={shipping} setShipping={setShipping} setStep={setStep} />,
-        <Payment payment={payment} setPayment={setPayment} setStep={setStep} listProductCheckout={cart.listCart} />
+        <Payment payment={payment} shipping={shipping} setPayment={setPayment} setStep={setStep} />
     ]
 
     const isStepDisabled = (stepNumber) => {
@@ -46,10 +32,11 @@ const CheckOut = () => {
 
     useEffect(() => {
         TabTitle('Checkout')
+        window.scrollTo(0, 0)
     }, [])
 
-    return <div className="checkout login min-h-screen py-8 flex justify-center items-center bg-honeydew">
-        <div className='bg-white py-6 px-12 rounded-[8px]'>
+    return <div className="checkout min-h-screen py-8 flex justify-center items-center bg-honeydew">
+        <div className='bg-white pt-6 py-12 px-12 rounded-[8px]'>
             <p className='text-eclipse font-semibold text-[32px] tracking-[2px] mb-4'>Checkout</p>
             <div className='w-[1000px] min-h-[400px] border border-light-gray rounded-[8px] overflow-hidden'>
                 <Steps
@@ -58,7 +45,7 @@ const CheckOut = () => {
                     current={step}
                 >
                     {
-                        listStep.map((item, index) =>
+                        LIST_CHECKOUT.map((item, index) =>
                             <Steps.Step
                                 key={index}
                                 icon={index + 1}

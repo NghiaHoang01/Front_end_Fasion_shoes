@@ -30,7 +30,7 @@ const CartDetail = (props) => {
 
     const handleCheckout = async () => {
         if (listCartItemChoose.length === 0) {
-            openNotification('Your shopping list is empty. Please select the product you want to purchase.', 'warning')
+            openNotification('Please select the product you want to purchase.', 'warning')
         } else {
             await dispatch(saveListCartItemsChoosed(listCartItemChoose))
             navigate(APP_URLS.URL_CHECKOUT)

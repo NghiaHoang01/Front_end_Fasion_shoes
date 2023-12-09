@@ -11,7 +11,7 @@ import { loginSelector, logoutAsync } from 'page/Login/LoginSlice';
 import Female from 'assets/Image/Female.jpg'
 import Male from 'assets/Image/Male.jpg'
 import { cartSelector, countCartItemAsync } from 'page/User/CartDetail/CartSlice';
-
+import { checkOutSelector } from 'page/User/CheckOut/CheckOutSlice';
 
 const HeaderRight = () => {
     const navigate = useNavigate();
@@ -23,6 +23,8 @@ const HeaderRight = () => {
     const shopNow = useSelector(shopNowSelector)
 
     const cart = useSelector(cartSelector)
+
+    const checkout = useSelector(checkOutSelector)
 
     const user = JSON.parse(localStorage.getItem("user"))
 
@@ -47,8 +49,8 @@ const HeaderRight = () => {
         setIsModalOpen(false);
     };
 
-    const onSearch = (value) => {
-        dispatch(filter(value))
+    const onSearch = async (value) => {
+        await dispatch(filter(value))
         navigate(APP_URLS.URL_SHOP_NOW)
     }
 
@@ -58,10 +60,10 @@ const HeaderRight = () => {
 
     const items = [
         {
-            key: '1',
+            key: '3',
             label: (
-                <Link to="/home">
-                    Orders
+                <Link to={APP_URLS.URL_CHANGE_PASSWORD}>
+                    Change password
                 </Link>
             ),
         },
@@ -74,10 +76,10 @@ const HeaderRight = () => {
             ),
         },
         {
-            key: '3',
+            key: '1',
             label: (
-                <Link to={APP_URLS.URL_CHANGE_PASSWORD}>
-                    Change password
+                <Link to={APP_URLS.URL_ORDERS}>
+                    My orders
                 </Link>
             ),
         },
@@ -98,19 +100,19 @@ const HeaderRight = () => {
             countCartItem()
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [cart.cartItem])
+    }, [cart.cartItem, checkout.placeOrder])
 
     useEffect(() => {
-        if (shopNow.filter.name === '') {
+        if (shopNow.filter.name === undefined) {
             formSearch.current?.resetForm()
         }
-    }, [shopNow.filter.name])
+    }, [shopNow.filter])
 
     return <>
         <div className='flex justify-between items-center h-10 header--right'>
             <Formik
                 initialValues={{
-                    name: shopNow.filter.name
+                    name: shopNow.filter.name !== undefined ? shopNow.filter.name : ''
                 }}
                 onSubmit={onSearch}
                 innerRef={formSearch}

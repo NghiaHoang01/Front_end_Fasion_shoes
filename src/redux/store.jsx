@@ -5,6 +5,8 @@ import loginReducer from "page/Login/LoginSlice"
 import accountReducer from "page/User/Account/AccountSlice"
 import homeReducer from "page/User/Home/HomeSilce"
 import productReducer from "page/User/ProductDetail/ProductSlice"
+import checkoutReducer from "page/User/CheckOut/CheckOutSlice"
+import orderReducer from "page/User/Orders/OrderSlice"
 
 const store = configureStore({
     reducer: {
@@ -13,7 +15,9 @@ const store = configureStore({
         login: loginReducer,
         account: accountReducer,
         home: homeReducer,
-        product: productReducer
+        product: productReducer,
+        checkout: checkoutReducer,
+        order: orderReducer
     }
 })
 
