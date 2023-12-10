@@ -2,7 +2,7 @@ export const ConvertDateHaveHour = (value) => {
     const date = new Date(value);
 
     const hours = date.getHours();
-    const minutes = date.getMinutes();
+    const minutes = date.getMinutes() > 9 ? date.getMinutes() : '0' + date.getMinutes();
 
     const amOrPm = hours >= 12 ? "PM" : "AM";
     const formattedHours = hours % 12 || 12;

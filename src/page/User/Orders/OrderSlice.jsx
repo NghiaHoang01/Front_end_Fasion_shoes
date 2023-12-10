@@ -3,13 +3,14 @@ import { cancelOrderService, getOrdersSerivce } from "service/OrderService"
 
 const initialState = {
     isLoading: false,
+    isloadListOrders: false,
     listOrders: {},
     orderItem: {}
 }
 
 // place order COD
-export const getOrdersAsync = createAsyncThunk("getOrders", async () => {
-    const response = await getOrdersSerivce()
+export const getOrdersAsync = createAsyncThunk("getOrders", async (params) => {
+    const response = await getOrdersSerivce(params)
     return response.data
 })
 
@@ -27,10 +28,10 @@ export const order = createSlice({
         builder
             // get orders
             .addCase(getOrdersAsync.pending, (state) => {
-                state.isLoading = true
+                state.isloadListOrders = true
             })
             .addCase(getOrdersAsync.fulfilled, (state, action) => {
-                state.isLoading = false
+                state.isloadListOrders = false
                 state.listOrders = action.payload
             })
 

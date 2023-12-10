@@ -76,7 +76,7 @@ const CartItem = (props) => {
             </div>
 
             <div className='text-[14.5px] text-grey font-medium tracking-[0.75px]'>
-                <p>{Capitelize(cart.titleProduct.split(' ')).toString().replaceAll(',', ' ')}</p>
+                <p className='truncate'>{Capitelize(cart.titleProduct.split(' ')).toString().replaceAll(',', ' ')}</p>
                 <p>{Capitelize(cart.color.split(' ')).toString().replaceAll(',', ' ')}</p>
             </div>
 

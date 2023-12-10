@@ -51,10 +51,10 @@ const OrderItem = (props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    return <div className='w-[800px] bg-white px-10 py-5 rounded-[8px] border border-light-gray mb-8'>
+    return <div className='w-[1000px] bg-white px-10 py-5 rounded-[8px] border border-light-gray mb-8'>
         <p className='text-[25px] text-eclipse uppercase font-semibold tracking-[1px] mb-3'>My Order</p>
         <div className='flex justify-between'>
-            <div className='w-[48%]'>
+            <div className='w-[68%]'>
                 <div className='order--item flex mb-2'>
                     <p>Receiver name: </p>
                     <p>{order.fullName}</p>
@@ -77,18 +77,18 @@ const OrderItem = (props) => {
                 </div>
 
             </div>
-            <div className='w-[38%] overflow-hidden'>
+            <div className='w-[30%] overflow-hidden'>
                 <div className='order--item-custom flex mb-2 justify-between'>
                     <p>Order Date:</p>
                     <p>{order.orderDate !== null ? ConvertDateHaveHour(order.orderDate) : '...'}</p>
                 </div>
                 <div className='order--item-custom flex mb-2 justify-between'>
                     <p>Delivery Date:</p>
-                    <p>{order.deliveryDate !== null ? order.deliveryDate : '...'}</p>
+                    <p>{order.deliveryDate !== null ? ConvertDateHaveHour(order.deliveryDate) : '...'}</p>
                 </div>
                 <div className='order--item-custom flex mb-2 justify-between'>
                     <p>Receiving Date: </p>
-                    <p>{order.receivingDate !== null ? order.receivingDate : '...'}</p>
+                    <p>{order.receivingDate !== null ? ConvertDateHaveHour(order.receivingDate) : '...'}</p>
                 </div>
                 <div className='order--item-custom flex mb-2 justify-between'>
                     <p>Payment: </p>
@@ -122,7 +122,9 @@ const OrderItem = (props) => {
                                     <span className="text-red-custom mx-2">x</span>
                                     <p className='font-bold text-red-custom' title='Quantity'>{item.quantity}</p>
                                 </div>
-                                <p className="text-[14px] text-grey mt-1 tracking-[0.5px]">Size: {item.size}</p>
+                                <p className="text-[14px] text-grey mt-1 tracking-[0.5px]">
+                                    Brand: {Capitelize(item.brand.split(' ')).toString().replaceAll(',', ' ')} - Size: {item.size}
+                                </p>
                             </div>
                         </td>
                         <td className='text-[16px] text-right'>{item.totalPrice.toLocaleString()}<sup>đ</sup></td>

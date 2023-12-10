@@ -1,8 +1,9 @@
+import queryString from "query-string"
 import request from "utils/Request"
 
 // get orders of user
-export const getOrdersSerivce = () => {
-    return request('/api/user/orders/detail', {
+export const getOrdersSerivce = (params) => {
+    return request(`/api/user/orders/detail?${queryString.stringify(params)}`, {
         method: 'GET'
     })
 }

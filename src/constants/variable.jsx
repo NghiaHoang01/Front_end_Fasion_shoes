@@ -89,6 +89,35 @@ export const STATUS_ORDER = {
     DELIVERED: 'DELIVERED'
 }
 
+export const LIST_ORDER_STATUS = [
+    {
+        value: 'PENDING',
+        label: 'Pending'
+    }, {
+        value: 'CONFIRMED',
+        label: 'Confirmed'
+    }, {
+        value: 'SHIPPED',
+        label: 'Shipped'
+    }, {
+        value: 'DELIVERED',
+        label: 'Delivered'
+    },
+]
+
+export const LIST_PAYMENT_METHOD = [
+    {
+        value: 'COD',
+        label: 'COD'
+    }, {
+        value: 'VNPAY',
+        label: 'VNPAY'
+    }, {
+        value: 'MOMO',
+        label: 'MOMO'
+    }
+]
+
 // name color
 export const BLACK = 'BLACK'
 
