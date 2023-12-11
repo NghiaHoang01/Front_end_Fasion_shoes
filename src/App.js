@@ -1,8 +1,6 @@
 import { BrowserRouter } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
-import Header from 'components/header';
 import AppRoutes from 'Routes/AppRoutes';
-import Footer from 'components/Footer';
 
 function App() {
   return (
@@ -27,9 +25,7 @@ function App() {
         }}
       >
         <BrowserRouter>
-          <Header />
           <AppRoutes />
-          <Footer />
         </BrowserRouter>
       </ConfigProvider>
 

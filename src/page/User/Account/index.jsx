@@ -1,7 +1,6 @@
 import { Spin } from 'antd'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Base64ImageToBlob } from 'utils/Base64ToBlob'
 import { TabTitle } from 'utils/TabTitle'
 import { accountSelector } from './AccountSlice'
 import AccountHeader from './components/AccountHeader'
@@ -13,13 +12,11 @@ const Account = (props) => {
 
     const user = JSON.parse(localStorage.getItem("user"))
 
-    const [imageFile, setImageFile] = useState(Base64ImageToBlob(user.imageBase64))
+    const [imageFile, setImageFile] = useState(user?.imageBase64)
 
-    // get Province
     useEffect(() => {
         TabTitle('My account')
     }, [])
-
 
     return <div className="account min-h-[calc(100vh-80px)] py-10 bg-honeydew flex justify-center items-center">
         <Spin tip="Loading..." spinning={account.isLoading} size='large'>

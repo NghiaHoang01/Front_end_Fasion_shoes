@@ -30,7 +30,7 @@ const SignupForm = (props) => {
     const [districtCode, setDistrictCode] = useState('')
 
     const handleSignUp = async (values, { resetForm }) => {
-        const userRequest = { ...values, ...{ avatarBase64: '' } }
+        const userRequest = { ...values, ...{ avatarBase64: null } }
         const response = await dispatch(registerAsync(userRequest))
         if (response.payload.success) {
             console.log(response)

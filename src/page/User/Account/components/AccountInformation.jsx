@@ -7,7 +7,6 @@ import { useState } from "react"
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { ConvertDate } from "utils/ConvertDate"
-import { ConvertImageToBase64 } from "utils/ConvertImageToBase64"
 import * as Yup from 'yup'
 import { getDistrictByProvinceAsync, getWardByDistrictAsync, getProvinceAsync, updateInformationAsync } from "../AccountSlice"
 
@@ -23,9 +22,7 @@ const AccountInformation = (props) => {
     const user = JSON.parse(localStorage.getItem("user"))
 
     const handleSave = async (values) => {
-        const avatar = await ConvertImageToBase64(props.imageFile)
-
-        const userRequest = { ...values, ...{ avatarBase64: avatar } }
+        const userRequest = { ...values, ...{ avatarBase64: props.imageFile } }
 
         const res = await dispatch(updateInformationAsync(userRequest));
 
@@ -136,7 +133,7 @@ const AccountInformation = (props) => {
                     return <Form>
                         <div className="flex justify-between items-center">
                             <div className="w-[48.5%]">
-                                <InputField title='Create at' type='text' name='createAt' disabled disable={true} />
+                                <InputField title='Create At' type='text' name='createAt' disabled disable={true} />
                             </div>
                             <div className="w-[48.5%]">
                                 <InputField title='Email' type='text' name='email' disabled disable={true} />
@@ -145,10 +142,10 @@ const AccountInformation = (props) => {
 
                         <div className="flex justify-between items-center">
                             <div className="w-[48.5%]">
-                                <InputField title='First name' type='text' name='firstName' />
+                                <InputField title='First Name' type='text' name='firstName' />
                             </div>
                             <div className="w-[48.5%]">
-                                <InputField title='Last name' type='text' name='lastName' />
+                                <InputField title='Last Name' type='text' name='lastName' />
                             </div>
                         </div>
 
@@ -163,7 +160,7 @@ const AccountInformation = (props) => {
 
                         <div className="flex justify-between items-center">
                             <div className="w-[48.5%]">
-                                <InputField title='Street address' name='address' type='text' />
+                                <InputField title='Street Address' name='address' type='text' />
                             </div>
 
                             <div className="w-[48.5%]">

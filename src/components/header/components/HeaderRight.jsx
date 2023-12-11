@@ -13,7 +13,10 @@ import Male from 'assets/Image/Male.jpg'
 import { cartSelector, countCartItemAsync } from 'page/User/CartDetail/CartSlice';
 import { checkOutSelector } from 'page/User/CheckOut/CheckOutSlice';
 
-const HeaderRight = () => {
+const HeaderRight = (props) => {
+
+    let user = JSON.parse(localStorage.getItem("user"))
+
     const navigate = useNavigate();
 
     const dispatch = useDispatch()
@@ -25,8 +28,6 @@ const HeaderRight = () => {
     const cart = useSelector(cartSelector)
 
     const checkout = useSelector(checkOutSelector)
-
-    const user = JSON.parse(localStorage.getItem("user"))
 
     const formSearch = useRef()
 
@@ -130,7 +131,7 @@ const HeaderRight = () => {
             </Formik>
 
             {
-                localStorage.getItem("user") != null ?
+                localStorage.getItem("user") !== null ?
                     <div className='ml-5 flex items-end space-between h-full'>
                         <div className="cart" onClick={() => { navigate(APP_URLS.URL_CART) }}>
                             <span className='cart__amount'>{cart.totalCartItem}</span>
@@ -144,8 +145,8 @@ const HeaderRight = () => {
                                 arrow
                             >
                                 <img className='object-cover object-center w-full h-full rounded-full border border-light-gray'
-                                    src={user?.imageBase64 !== ''
-                                        ? `data:image/png;base64,${user?.imageBase64}`
+                                    src={user?.imageBase64 !== null
+                                        ? (user?.imageBase64)
                                         : (user?.gender === MALE ? Male : Female)}
                                     alt="error" />
                             </Dropdown>

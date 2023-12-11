@@ -22,6 +22,8 @@ import Account from "page/User/Account";
 import AnonymousRoutes from "./Anonymous";
 import ChangePassword from "page/Login/components/ChangePassword";
 import { notification } from "antd";
+import Header from "components/header";
+import Footer from "components/Footer";
 
 const AppRoutes = (props) => {
     // notification
@@ -35,6 +37,7 @@ const AppRoutes = (props) => {
         });
     };
     return <>
+        <Header />
         <Routes>
             <Route path="/" element={<Navigate to={APP_URLS.URL_HOME}></Navigate>}></Route>
             <Route path={APP_URLS.URL_HOME} element={<Home />}></Route>
@@ -62,6 +65,7 @@ const AppRoutes = (props) => {
 
             <Route path="*" element={<Error404 />}></Route>
         </Routes>
+        <Footer />
         {contextHolder}
     </>
 }

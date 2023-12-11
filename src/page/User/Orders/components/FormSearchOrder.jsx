@@ -139,7 +139,7 @@ const FormSearchOrder = (props) => {
             </Form.Item>
             <div className="flex items-center justify-center mt-6">
                 <button type="reset" form={formSearchOrder} className="button-cancel mr-3 px-10 py-2 text-[12.5px] min-w-[140px]">
-                    Reset
+                    Clear
                 </button>
                 <button type="submit" form={formSearchOrder} className="button-custom ml-3 px-10 py-2 text-[12.5px] min-w-[140px]">
                     Search

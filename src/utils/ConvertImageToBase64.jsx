@@ -5,7 +5,7 @@ export const ConvertImageToBase64 = async (data) => {
             reader.onload = () => resolve(reader.result);
             reader.onerror = reject;
             reader.readAsDataURL(data);
-        }).then(base64String => base64String.replace(/data:image\/(jpeg|png|png);base64,/g, ''));
+        }).then(base64String => base64String);
     }
     catch (err) {
         console.error("Error in ConvertImageToBase64:", err);

@@ -68,7 +68,7 @@ export const account = createSlice({
             })
             .addCase(updateInformationAsync.fulfilled, (state, action) => {
                 state.isLoading = false
-                state.userInforUpdate = action.payload
+                state.userInforUpdate = action.payload.results
             })
     }
 })
