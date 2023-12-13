@@ -32,7 +32,7 @@ const LoginForm = (props) => {
             localStorage.setItem("user", JSON.stringify(response.payload.results))
             resetForm()
             countCartItem()
-            navigate(APP_URLS.URL_CART)
+            navigate(APP_URLS.URL_SHOP_NOW)
         }
         else {
             switch (response.payload.status) {
