@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { cancelOrderService, getOrdersSerivce } from "service/OrderService"
+import { cancelOrderService, getOrdersSerivce, getVNPayInformationService, updatePayOfOrderVNPayService } from "service/OrderService"
 
 const initialState = {
     isLoading: false,
@@ -17,6 +17,18 @@ export const getOrdersAsync = createAsyncThunk("getOrders", async (params) => {
 // cancel order
 export const cancelOrdersAsync = createAsyncThunk("cancelOrder", async (id) => {
     const response = await cancelOrderService(id)
+    return response.data
+})
+
+// update pay of order vnpay
+export const updatePayOfOrderVNPayAsync = createAsyncThunk("updatePayOfOrderVNPay", async (params) => {
+    const response = await updatePayOfOrderVNPayService(params)
+    return response.data
+})
+
+//get VNPay response
+export const getVNPayResponseAsync = createAsyncThunk("getVNPayResponse", async (id) => {
+    const response = await getVNPayInformationService(id)
     return response.data
 })
 
@@ -42,6 +54,22 @@ export const order = createSlice({
             .addCase(cancelOrdersAsync.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.orderItem = action.payload
+            })
+
+            // update pay of order vnpay
+            .addCase(updatePayOfOrderVNPayAsync.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(updatePayOfOrderVNPayAsync.fulfilled, (state) => {
+                state.isLoading = false
+            })
+
+            //get VNPay response
+            .addCase(getVNPayResponseAsync.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(getVNPayResponseAsync.fulfilled, (state) => {
+                state.isLoading = false
             })
     }
 })

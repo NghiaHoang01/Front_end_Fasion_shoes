@@ -14,3 +14,18 @@ export const cancelOrderService = (id) => {
         method: 'DELETE'
     })
 }
+
+// update pay of order vnpay
+export const updatePayOfOrderVNPayService = (params) => {
+    return request(`/api/user/order/pay?${queryString.stringify(params)}`, {
+        method: 'PUT',
+        data: params
+    })
+}
+
+// get VNPay response
+export const getVNPayInformationService = (id) => {
+    return request(`/api/user/vnpay/information?orderId=${id}`, {
+        method: 'GET'
+    })
+}

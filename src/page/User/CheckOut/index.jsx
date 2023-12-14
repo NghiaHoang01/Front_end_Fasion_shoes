@@ -8,7 +8,9 @@ import { TabTitle } from 'utils/TabTitle';
 import StepCheckout from 'components/StepCheckout';
 import { LIST_CHECKOUT } from 'constants/variable';
 
-const CheckOut = () => {
+const CheckOut = (props) => {
+
+    const { openNotification } = props
 
     const [step, setStep] = useState(0)
 
@@ -18,7 +20,7 @@ const CheckOut = () => {
 
     const forms = [
         <Shipping shipping={shipping} setShipping={setShipping} setStep={setStep} />,
-        <Payment payment={payment} shipping={shipping} setPayment={setPayment} setStep={setStep} />
+        <Payment payment={payment} shipping={shipping} setPayment={setPayment} setStep={setStep} openNotification={openNotification} />
     ]
 
     const isStepDisabled = (stepNumber) => {

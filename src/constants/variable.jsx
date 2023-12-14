@@ -32,7 +32,8 @@ export const APP_URLS = {
     URL_CHECKOUT: '/checkout',
     URL_ORDERS: '/orders',
     URL_ACCOUNT: '/account',
-    URL_CHANGE_PASSWORD: '/change-password'
+    URL_CHANGE_PASSWORD: '/change-password',
+    URL_VNPAY_RESPONSE: '/vnpay-response'
 }
 
 //navbar

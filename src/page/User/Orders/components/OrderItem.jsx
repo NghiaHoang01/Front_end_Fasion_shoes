@@ -138,10 +138,14 @@ const OrderItem = (props) => {
                     <td className='tracking-[1.25px]'>Subtoal</td>
                     <td className='text-red-custom text-right'>{order.totalPrice.toLocaleString()}<sup>đ</sup></td>
                 </tr>
+                <tr className='text-[16px] font-semibold'>
+                    <td className='tracking-[1.25px]'>Pay</td>
+                    <td className='text-red-custom text-right'>{order.pay}</td>
+                </tr>
             </tbody>
         </table>
         {
-            order.statusOrder === STATUS_ORDER.PENDING && <div className='text-right'>
+            (order.statusOrder === STATUS_ORDER.PENDING && order.pay !== 'PAID') && <div className='text-right'>
                 <Popconfirm
                     title="Delete the task"
                     description="Are you sure cancel this order?"

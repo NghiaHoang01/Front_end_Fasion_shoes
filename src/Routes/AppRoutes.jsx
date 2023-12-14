@@ -24,6 +24,7 @@ import ChangePassword from "page/Login/components/ChangePassword";
 import { notification } from "antd";
 import Header from "components/header";
 import Footer from "components/Footer";
+import VNPayResponse from "page/User/VNPayResponse/index.jsx";
 
 const AppRoutes = (props) => {
     // notification
@@ -57,9 +58,10 @@ const AppRoutes = (props) => {
 
             <Route element={<PrivateRoutes />}>
                 <Route path={APP_URLS.URL_CART} element={<CartDetail openNotification={openNotification} />}></Route>
-                <Route path={APP_URLS.URL_CHECKOUT} element={<CheckOut />}></Route>
+                <Route path={APP_URLS.URL_CHECKOUT} element={<CheckOut openNotification={openNotification} />}></Route>
                 <Route path={APP_URLS.URL_ORDERS} element={<Orders openNotification={openNotification} />}></Route>
                 <Route path={APP_URLS.URL_ACCOUNT} element={<Account openNotification={openNotification} />}></Route>
+                <Route path={`${APP_URLS.URL_VNPAY_RESPONSE}/:orderId`} element={<VNPayResponse openNotification={openNotification} />}></Route>
                 <Route path={APP_URLS.URL_CHANGE_PASSWORD} element={<Login form={<ChangePassword openNotification={openNotification} />} />}></Route>
             </Route>
 
