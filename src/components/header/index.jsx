@@ -13,8 +13,7 @@ const Header = (props) => {
     const account = useSelector(accountSelector)
 
     useEffect(() => {
-        window.scrollBy(0, 1)
-        window.scrollBy(0, 0)
+        window.scrollBy(0, 2)
     }, [account.userInforUpdate])
 
     return <div className={`header px-[26px] py-4 flex justify-between items-center shadow-md bg-white sticky ${scrollDirection === "down" ? "-top-24" : "top-0"} z-50 w-full h-20 duration-[400ms] ease-linear`}>

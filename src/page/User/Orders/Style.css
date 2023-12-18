@@ -13,3 +13,7 @@
     min-width: 120px;
     font-weight: 600;
 }
+
+.ant-form-item .ant-form-item-label>label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
+    content: none;
+}

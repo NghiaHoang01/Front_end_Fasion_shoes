@@ -166,7 +166,8 @@ const Shipping = (props) => {
                                     onChange={(e) => handleChangeProvince(e, formikProps.setFieldValue)}
                                     name='province'
                                     title='Province'
-                                    options={provices} />
+                                    options={provices}
+                                    placeholder='Select your province' />
                             </div>
 
                             <div className='w-[31%]'>
@@ -174,11 +175,16 @@ const Shipping = (props) => {
                                     onChange={(e) => handleChangeDistrict(e, formikProps.setFieldValue)}
                                     name='district'
                                     title='District'
-                                    options={districts} />
+                                    options={districts}
+                                    placeholder='Select your district' />
                             </div>
 
                             <div className='w-[31%]'>
-                                <SelectField name='ward' title='Ward' options={wards} />
+                                <SelectField
+                                    name='ward'
+                                    title='Ward'
+                                    options={wards}
+                                    placeholder='Select your ward' />
                             </div>
                         </div>
 

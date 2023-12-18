@@ -5,7 +5,7 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { ConvertDateHaveHour } from "utils/ConvertDateHaveHour"
-import { getVNPayResponseAsync, orderSelector, updatePayOfOrderVNPayAsync } from "../Orders/OrderSlice"
+import { getVNPayResponseAsync, orderSelector } from "../Orders/OrderSlice"
 
 const VNPayResponse = (props) => {
 
@@ -33,12 +33,6 @@ const VNPayResponse = (props) => {
         const response = await dispatch(getVNPayResponseAsync(orderId))
         if (response.payload.success) {
             setVnPay(response.payload.results)
-
-            // update lại đơn hàng thành đã thanh toán
-            await dispatch(updatePayOfOrderVNPayAsync({
-                vnp_ResponseCode: response.payload.results.vnp_ResponseCode,
-                id: orderId
-            }))
         } else {
             openNotification(response.payload.message, 'success')
         }

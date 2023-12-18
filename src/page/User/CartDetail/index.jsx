@@ -66,7 +66,7 @@ const CartDetail = (props) => {
                     checkedList={checkedList}
                     setCheckedList={setCheckedList}
                     openNotification={openNotification}
-                    getCartDetail={getCartDetail} />
+                />
                 <Summary subTotal={listCartItemChoose.length > 0 ? listCartItemChoose.reduce((total, current) => total + current.totalPrice, 0) : 0} handleCheckout={handleCheckout} />
             </div>
             <ProductAlsoLike />

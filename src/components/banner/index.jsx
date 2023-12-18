@@ -27,7 +27,7 @@ const Banner = () => {
             'url': fourthSlide,
             'title': 'Converse All Star',
             'brand': 'converse',
-            'brandId': 4
+            'brandId': 8
         }
     ]
 

@@ -12,6 +12,7 @@
     color: var(--grey);
 }
 
-.ant-popconfirm-buttons .ant-btn-primary {
+.ant-popconfirm-buttons .ant-btn-primary,
+.ant-modal-footer .ant-btn-primary {
     background-color: var(--red) !important;
 }

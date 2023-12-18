@@ -8,7 +8,7 @@ import { filter } from "page/User/ShopNow/ShopNowSlice"
 import { useEffect } from "react"
 import { useRef, useState } from "react"
 import { useDispatch } from "react-redux"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { Capitelize } from "utils/Capitalize"
 import * as Yup from 'yup'
 
@@ -74,6 +74,9 @@ const ProductModal = (props) => {
 
     const handleNavigateShopNow = async () => {
         await dispatch(filter({ brandId: product.brandProduct.id }))
+        setIsModalOpen(false)
+        navigate(APP_URLS.URL_SHOP_NOW)
+
     }
 
     useEffect(() => {
@@ -92,7 +95,7 @@ const ProductModal = (props) => {
                 <img src={product.mainImageBase64} alt="" className='w-full h-full object-center object-cover' />
             </div>
             <div className='w-[49%]'>
-                <p className='font-semibold text-[16px] mb-3 text-eclipse tracking-[0.75px]'>Brand: <Link to={APP_URLS.URL_SHOP_NOW} onClick={handleNavigateShopNow} className='text-red-custom uppercase'>{product.brandProduct.name}</Link></p>
+                <p className='font-semibold text-[16px] mb-3 text-eclipse tracking-[0.75px]'>Brand: <span onClick={handleNavigateShopNow} className='text-red-custom uppercase cursor-pointer duration-100 ease-linear hover:text-blue-700'>{product.brandProduct.name}</span></p>
                 <p
                     className='whitespace-nowrap truncate text-[28.5px] font-bold text-eclipse tracking-[0.75px]'
                     title={Capitelize(product.name.trim().split(' ')).toString().replaceAll(',', ' ')}

@@ -16,10 +16,15 @@ function App() {
               colorPrimaryHover: '#c91f28',
               colorPrimary: '#c91f28',
               colorPrimaryBorder: '#c91f28',
+            }, Input: {
+              controlHeight: '38',
             }, Select: {
               controlHeight: '38',
             }, DatePicker: {
               controlHeight: '38'
+            }, Modal: {
+              titleColor: '#a8020a',
+              titleFontSize: '28px'
             },
           },
         }}

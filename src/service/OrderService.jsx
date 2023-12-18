@@ -8,6 +8,21 @@ export const getOrdersSerivce = (params) => {
     })
 }
 
+// get order detail 
+export const getOrderDetailService = (id) => {
+    return request(`/api/user/order/detail?id=${id}`, {
+        method: 'GET'
+    })
+}
+
+// update order information
+export const updateOrderInfoService = (params) => {
+    return request(`/api/user/order?id=${params.id}`, {
+        method: 'PUT',
+        data: params
+    })
+}
+
 // cancel order
 export const cancelOrderService = (id) => {
     return request(`api/user/order?id=${id}`, {
@@ -15,17 +30,9 @@ export const cancelOrderService = (id) => {
     })
 }
 
-// update pay of order vnpay
-export const updatePayOfOrderVNPayService = (params) => {
-    return request(`/api/user/order/pay?${queryString.stringify(params)}`, {
-        method: 'PUT',
-        data: params
-    })
-}
-
 // get VNPay response
 export const getVNPayInformationService = (id) => {
-    return request(`/api/user/vnpay/information?orderId=${id}`, {
+    return request(`/api/user/order/vnpay/information?orderId=${id}`, {
         method: 'GET'
     })
 }

@@ -45,7 +45,10 @@ const Orders = (props) => {
         setOrders({
             ...orders, visible: 5
         })
+        window.scrollTo(0, 0)
     }
+
+
 
     useEffect(() => {
         TabTitle('My orders')
@@ -74,7 +77,12 @@ const Orders = (props) => {
                     {
                         orders.data.length > 0 ?
                             <>
-                                {orders.data.slice(0, orders.visible).map((item, index) => <OrderItem key={index} order={item} openNotification={openNotification} />)}
+                                {
+                                    orders.data.slice(0, orders.visible).map((item, index) => {
+                                        return <OrderItem key={index} order={item} openNotification={openNotification} />
+                                    }
+                                    )
+                                }
                                 {
                                     orders.visible < orders.data.length ?
                                         <button onClick={handleLoadMore} className='button-custom px-[70px] py-2 text-[16px]'>Load more</button>

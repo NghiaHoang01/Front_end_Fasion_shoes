@@ -185,17 +185,30 @@ const SignupForm = (props) => {
                                 <InputField name='address' title='Street address' type='text' />
                             </div>
                             <div className='w-[49%]'>
-                                <SelectField onChange={(e) => handleChangeProvince(e, formikProps.setFieldValue)} name='province' title='Province' options={provices} placeholder='Select your province' />
+                                <SelectField
+                                    onChange={(e) => handleChangeProvince(e, formikProps.setFieldValue)}
+                                    name='province'
+                                    title='Province'
+                                    options={provices}
+                                    placeholder='Select your province' />
                             </div>
                         </div>
 
                         <div className='flex justify-between'>
 
                             <div className='w-[49%]'>
-                                <SelectField onChange={(e) => handleChangeDistrict(e, formikProps.setFieldValue)} name='district' title='District' options={districts} placeholder='Select your district' />
+                                <SelectField onChange={(e) => handleChangeDistrict(e, formikProps.setFieldValue)}
+                                    name='district'
+                                    title='District'
+                                    options={districts}
+                                    placeholder='Select your district' />
                             </div>
                             <div className='w-[49%]'>
-                                <SelectField name='ward' title='Ward' options={wards} placeholder='Select your ward' />
+                                <SelectField
+                                    name='ward'
+                                    title='Ward'
+                                    options={wards}
+                                    placeholder='Select your ward' />
                             </div>
                         </div>
 
