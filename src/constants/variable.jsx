@@ -1,4 +1,6 @@
-export const BASE_URL = 'https://backendfashionshoes-production.up.railway.app'
+// export const BASE_URL = 'https://backendfashionshoes-production.up.railway.app'
+export const BASE_URL = 'http://localhost:8080'
+
 // role
 export const ROLE_USER = 'USER';
 export const ROLE_ADMIN = 'ADMIN';
