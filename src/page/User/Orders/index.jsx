@@ -27,6 +27,7 @@ const Orders = (props) => {
 
     const getAllOrders = async (params) => {
         const response = await (dispatch(getOrdersAsync(params)))
+        console.log(response)
         if (response.payload.success) {
             setOrders({
                 data: response.payload.results,

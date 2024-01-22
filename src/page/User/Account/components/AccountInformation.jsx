@@ -6,6 +6,7 @@ import { Form, Formik, useFormikContext } from "formik"
 import { useState } from "react"
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
+import { ConvertDate } from "utils/ConvertDate"
 import * as Yup from 'yup'
 import { getDistrictByProvinceAsync, getWardByDistrictAsync, getProvinceAsync, updateInformationAsync } from "../AccountSlice"
 
@@ -123,7 +124,7 @@ const AccountInformation = (props) => {
 
         <Formik
             initialValues={{
-                ...user, createAt: user.createAt.reverse().toString().replaceAll(",", "-")
+                ...user, createAt: ConvertDate(user.createAt)
             }}
             onSubmit={handleSave}
             validationSchema={validation}>

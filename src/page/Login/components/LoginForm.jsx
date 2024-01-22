@@ -37,13 +37,13 @@ const LoginForm = (props) => {
         else {
             switch (response.payload.status) {
                 case 500:
-                    props.openNotification(response.payload.message, 'error')
+                    props.openNotification("Invalid Password", 'error')
                     break
                 case 403:
                     props.openNotification('User not found !!!', 'error')
                     break
                 default:
-                    props.openNotification(response.payload.message, 'error')
+                    props.openNotification("Error System", 'error')
             }
         }
     }

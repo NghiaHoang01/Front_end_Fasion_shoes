@@ -87,7 +87,7 @@ const Bag = (props) => {
                         </Checkbox>
                         <Popconfirm
                             title="Delete the task"
-                            description="Are you sure to delete somne products?"
+                            description="Are you sure to delete some products?"
                             onConfirm={handleDeleteMultiCartItems}
                             okText="Yes"
                             cancelText="No"
