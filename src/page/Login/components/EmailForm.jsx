@@ -66,7 +66,7 @@ const EmailForm = (props) => {
             {
                 formikProps => {
                     return <Form>
-                        <InputField name='email' type='email' title='Email' />
+                        <InputField name='email' type='email' title='Email' autoFocus={true} />
                         <div className='mt-5'>
                             <Button name='Submit' />
                         </div>

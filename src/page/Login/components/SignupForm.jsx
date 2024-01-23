@@ -164,7 +164,7 @@ const SignupForm = (props) => {
                 (formikProps) => {
 
                     return <Form>
-                        <InputField name='firstName' title='First Name' type='text' />
+                        <InputField name='firstName' title='First Name' type='text' autoFocus={true} />
 
                         <InputField name='lastName' title='Last Name' type='text' />
 

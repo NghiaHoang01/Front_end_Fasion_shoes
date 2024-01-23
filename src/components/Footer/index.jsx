@@ -14,7 +14,7 @@ const Footer = () => {
             },
             {
                 'icon': <i className="fa-solid fa-envelope"></i>,
-                'content': 'bebebechecheche@gmail.com',
+                'content': 'hoangdainghia20012001@gmail.com',
             },
             {
                 'icon': <i className="fa-solid fa-phone"></i>,

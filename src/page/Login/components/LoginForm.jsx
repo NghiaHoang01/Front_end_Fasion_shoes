@@ -82,7 +82,7 @@ const LoginForm = (props) => {
             {
                 formikProps => {
                     return <Form>
-                        <InputField title='Email' name='email' type='email' />
+                        <InputField title='Email' name='email' type='email' autoFocus={true} />
 
                         <InputPasswordField title='Password' name='password' />
 
